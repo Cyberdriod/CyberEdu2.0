@@ -15,11 +15,15 @@ import javax.persistence.Table;
 @Table(name="applogin")
 public class Login {
 	
+	@Column(name="id")
 	private int id;
+	
 	@Column(name="email")
 	private String email;
+	
 	@Column(name="password")
 	private String password; 
+	
 	@Column(name="mobileno")
 	private String mobileno;
 	
@@ -56,7 +60,7 @@ public class Login {
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "usr_id_fk")
+	@JoinColumn(name = "usr_fk_id")
 	public Profile getProfile() {
 		return profile;
 	}

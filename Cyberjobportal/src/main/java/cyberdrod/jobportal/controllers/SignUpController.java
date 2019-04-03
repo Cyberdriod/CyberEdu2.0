@@ -39,73 +39,23 @@ public class SignUpController {
 	public ModelAndView saveProfile(@ModelAttribute("Profile") Profile profile,HttpServletRequest request,HttpServletResponse response) throws IOException 
 	{
 		logger.info("*********************Profile Controller Called**********************");
-//		String name=(String) request.getAttribute("firstname");
-//		String userEmail=(String) request.getAttribute("email");
-//		String mobileNo=(String) request.getAttribute("primarymobileno");
-//		String userpass=(String) request.getAttribute("password");
-//		String mobile = null;
-//		String email = null;
-//		List<Profile> list= signUpImpl.existUser(userEmail, mobileNo);
-//		for (Profile profile1 : list) 
-//		{
-//			 mobile = profile1.getPrimarymobileno();
-//			 email = profile1.getEmail();
-//		}
-//		if(userEmail.equals(email)){
-//			return new ModelAndView("index","emailmessage","Email is already exist");
-//		}
-//		else if(mobileNo.equals(mobile)) {
-//			return new ModelAndView("index","mobilemessage","Mobile Number is already exist");
-//		}else {
-//		String encryptpass = null;
-//		MessageDigest md;
-//		try {
-//				md = MessageDigest.getInstance("SHA-256");
-//				md.update(userpass.getBytes());
-//				byte byteData[] = md.digest();
-//				StringBuffer sb = new StringBuffer();
-//				for (int i = 0; i < byteData.length; i++) 
-//				{
-//					sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-//				}
-//			    encryptpass = sb.toString(); 
-//		    }
-//		catch (NoSuchAlgorithmException e1) {
-//			logger.info(e1.getMessage());
-//		}
-//		 signUpImpl.save( profile);//signup
-//	    
-//		 //message sending after user signup successfully
-//	     String smsMessage = " Hi "+ name +""
-//	     				   + " Thanks for registering with"
-//	     				   + " www.propselect.com";
-//	     SmsClass.smsSender(mobileNo, smsMessage);
-//	     
-//	     //mail sending afetr user signup successfully
-//	     String messagepart = " Dear " +  name + ", <br><br>"
-//				   			+ " Greeting's from www.propselect.com <br>"
-//				   			+ " Thanku you for registering with <br>"
-//				   			+ " www.propselect.com"
-//				   			+ " Our representative will get back to you shortly.";
-//	     String subject = "propselect.com - Received contact details";
-//	     Mailclass.sendemail(userEmail, messagepart, subject);
-//		}
-//		
-//		//check condition for sign up from both pages index & property upload
+	
 		String useremail=request.getParameter("email");
 		String mobileno=request.getParameter("primarymobileno");
 		System.out.println(useremail+" "+mobileno);
-//		
-		System.out.println(useremail+" "+mobileno);
+
 		if(signUpImpl.existUser(useremail, mobileno))
 		{
 			int userid=Integer.parseInt(request.getParameter("userid"));
 			signUpImpl.updateUser(profile, userid);
+			return new ModelAndView("index","message","Already Registerd");
 		}else {
-		signUpImpl.save(profile);
+			System.out.println("Else Part :: signupControler.");
+			signUpImpl.save(profile);
+			return new ModelAndView("index","message","Registration Successful");
 		}
 		
-		return new ModelAndView("index","message","Registration Successful");
+		
 	}
 	
 	

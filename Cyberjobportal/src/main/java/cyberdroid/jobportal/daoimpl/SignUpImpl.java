@@ -61,6 +61,7 @@ public class SignUpImpl implements SignUpDAO {
 		query.setParameter("userEmail",userEmail);
 		query.setParameter("mobile",mobile);
 		check = query.isReadOnly();
+		System.out.println("Exit User Status:: " + check );
 		transaction.commit();
 		session.close();
 		return check;

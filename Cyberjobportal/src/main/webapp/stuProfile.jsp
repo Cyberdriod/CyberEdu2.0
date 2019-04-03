@@ -31,6 +31,7 @@ Latest compiled JavaScript
 
 					</ul>
 					<div class="tab-content">
+					
 						<div class="tab-pane active" id="tab_1">
 							<!-- profile -->
 
@@ -178,7 +179,7 @@ Latest compiled JavaScript
 												<div class="col-md-4"></div>
 												<div class="col-md-4 text-center">
 
-													<a href="Personal.java"><button type="submit"
+													<button type="submit"
 															class="btn btn-block btn btn-primary btn-flat margin">Save
 															Changes</button></a>
 

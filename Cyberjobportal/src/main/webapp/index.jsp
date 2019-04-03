@@ -38,7 +38,7 @@
   	<br>
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="Login.htm" method="post">
+    <form action="login.htm" method="post">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="userid" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

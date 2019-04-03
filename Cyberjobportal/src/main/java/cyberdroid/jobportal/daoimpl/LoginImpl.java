@@ -7,13 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import cyberdroid.jobportal.beans.Profile;
 import cyberdroid.jobportal.beans.Login;
 import cyberdroid.jobportal.dao.LoginDAO;
 import cyberdroid.jobportal.util.HibernateUtil;
 
-@Repository
+@Service
 public class LoginImpl implements LoginDAO {
 
 	public List<Login> validateUser(String username, String password) {
@@ -21,14 +22,14 @@ public class LoginImpl implements LoginDAO {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		System.out.println(username+" "+password);
+		System.out.println(username + " " + password);
 		String hql = " FROM Login " + " WHERE email = ?  AND password = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, username);
 		query.setParameter(1, password);
-		
+
 		list = query.list();
-		System.out.println("Show the login value ="+list);
+		System.out.println("Show the login value =" + list);
 		transaction.commit();
 		session.close();
 		return list;
